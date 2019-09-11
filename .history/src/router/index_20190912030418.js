@@ -11,10 +11,6 @@ const routes = [
     {
         path: '/booking',
         component: () => import('@/page/FormBooking.vue')
-    },
-    {
-        path: '/manager',
-        component: () => import('@/page/manager/ManagerBooking.vue')
     }
 ]
 
