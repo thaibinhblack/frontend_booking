@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import uuid from 'uuid'
 export default {
     components: {
         'header-top': () => import('@/components/toolbar/HeaderTop.vue')

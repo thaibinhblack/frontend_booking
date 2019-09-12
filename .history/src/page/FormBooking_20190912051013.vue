@@ -5,7 +5,7 @@
             <header-step />
             <v-stepper-items>
                 <v-stepper-content step="1">
-                    <step-1 />
+                    
                 </v-stepper-content>
                 <!-- <step-map   @message="updateMessage" />
                 <step-service  />
@@ -31,13 +31,13 @@ export default {
     data()
     {
         return{
-            
+            step: 1
         }
     },
     computed:{
-        step(){
-            return this.$store.state.step
-        }
+        // step(){
+        //     return this.$store.state.step
+        // }
     },
     methods:{
         

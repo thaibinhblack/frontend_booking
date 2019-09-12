@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import uuid from 'uuid'
 export default {
     components: {
         'header-top': () => import('@/components/toolbar/HeaderTop.vue')
@@ -43,8 +42,7 @@ export default {
         return {
            booking: {
                 PHONE_BOOKING: '',
-                ACTION_BOOKING: 1,
-                NOTE_BOOKING: 'Khách hàng đã nhập số điện thoại đăng ký'
+                ACTION_BOOKING: 1
             },
             message: {
                 text: null,
@@ -65,21 +63,6 @@ export default {
                     this.message.type = 'warning'
                     this.message.text = 'Số điện thoại này đã được đăng ký!'
                 }
-                else
-                {
-                    this.ApiCreateBooking()
-                }
-            })
-        },
-        ApiCreateBooking()
-        {
-            this.booking.UUID_BOOKING = uuid.v4()
-            this.$http.post(this.$store.state.API_URL + 'booking',this.booking)
-            .then(() => {
-                this.$router.push('/booking')
-            }).catch(() => {
-                this.message.type = 'error'
-                this.message.text = 'Lôi! xin vui lòng thử lại!'
             })
         }
     }

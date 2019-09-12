@@ -19,7 +19,7 @@
                 ></v-text-field>
             </div>
             <div class="col-md-7 col-sm-12">
-                <button class="btn-booking" @click="createBooking()" style="width:100%">
+                <button class="btn-booking" @click="checkBooking()" style="width:100%">
                     <h4>ĐẶT LỊCH GIỮ CHỖ NGAY! </h4>
                     <small>Hoặc liên hệ ngay: 0947164024</small>
                 </button>
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import uuid from 'uuid'
 export default {
     components: {
         'header-top': () => import('@/components/toolbar/HeaderTop.vue')
@@ -43,8 +42,7 @@ export default {
         return {
            booking: {
                 PHONE_BOOKING: '',
-                ACTION_BOOKING: 1,
-                NOTE_BOOKING: 'Khách hàng đã nhập số điện thoại đăng ký'
+                ACTION_BOOKING: 1
             },
             message: {
                 text: null,
@@ -53,34 +51,6 @@ export default {
             rulePhone: [
                 v => /((09|03|07|08|05|01)+([0-9]{8})\b)/.test(v) || 'Đây không phải là số điện thoại',
             ],
-        }
-    },
-    methods:{
-        createBooking()
-        {
-            this.$http.get(this.$store.state.API_URL + 'booking?phone='+this.booking.PHONE_BOOKING)
-            .then((response) => {
-                if(response.data == false)
-                {
-                    this.message.type = 'warning'
-                    this.message.text = 'Số điện thoại này đã được đăng ký!'
-                }
-                else
-                {
-                    this.ApiCreateBooking()
-                }
-            })
-        },
-        ApiCreateBooking()
-        {
-            this.booking.UUID_BOOKING = uuid.v4()
-            this.$http.post(this.$store.state.API_URL + 'booking',this.booking)
-            .then(() => {
-                this.$router.push('/booking')
-            }).catch(() => {
-                this.message.type = 'error'
-                this.message.text = 'Lôi! xin vui lòng thử lại!'
-            })
         }
     }
 }

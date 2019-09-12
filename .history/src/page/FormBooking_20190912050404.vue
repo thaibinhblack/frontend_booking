@@ -1,12 +1,9 @@
 <template>
 <div id="wrap-main">
     <div class="layout-main form-booking">
-        <v-stepper v-model="step" class="step-form">
+        <v-stepper v-model="getStep" class="step-form">
             <header-step />
             <v-stepper-items>
-                <v-stepper-content step="1">
-                    <step-1 />
-                </v-stepper-content>
                 <!-- <step-map   @message="updateMessage" />
                 <step-service  />
                 <step-done /> -->
@@ -25,18 +22,12 @@ export default {
 
     components: {
         'header-step': () => import('@/components/formbooking/HeaderStep.vue'), 
-        'step-1': () => import('@/components/formbooking/step1/ListStore.vue')
        
     },
     data()
     {
         return{
-            
-        }
-    },
-    computed:{
-        step(){
-            return this.$store.state.step
+           
         }
     },
     methods:{

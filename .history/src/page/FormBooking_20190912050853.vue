@@ -4,9 +4,7 @@
         <v-stepper v-model="step" class="step-form">
             <header-step />
             <v-stepper-items>
-                <v-stepper-content step="1">
-                    <step-1 />
-                </v-stepper-content>
+                <step-1 />
                 <!-- <step-map   @message="updateMessage" />
                 <step-service  />
                 <step-done /> -->
@@ -31,13 +29,13 @@ export default {
     data()
     {
         return{
-            
+            step: 1
         }
     },
     computed:{
-        step(){
-            return this.$store.state.step
-        }
+        // step(){
+        //     return this.$store.state.step
+        // }
     },
     methods:{
         

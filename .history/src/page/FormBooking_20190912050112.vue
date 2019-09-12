@@ -1,12 +1,9 @@
 <template>
 <div id="wrap-main">
     <div class="layout-main form-booking">
-        <v-stepper v-model="step" class="step-form">
-            <header-step />
+        <v-stepper v-model="getStep" class="step-form">
+            <step-form />
             <v-stepper-items>
-                <v-stepper-content step="1">
-                    <step-1 />
-                </v-stepper-content>
                 <!-- <step-map   @message="updateMessage" />
                 <step-service  />
                 <step-done /> -->
@@ -15,28 +12,31 @@
         </v-stepper> 
          <!-- <form-question-user :dialog="dialog" @updateDialog="dialog = $event"/> -->
     </div>
+    <v-overlay :value="getOverlayBooking" style="z-index:9999">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
    
 </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
+// import * as firebase from  'firebase';
 import uuid from 'uuid'
+import axios from 'axios'
 export default {
     name: 'form-booking',
 
     components: {
-        'header-step': () => import('@/components/formbooking/HeaderStep.vue'), 
-        'step-1': () => import('@/components/formbooking/step1/ListStore.vue')
-       
+        'step-form': () => import('@/components/StepForm.vue'), 
+        'step-map':  () => import('@/components/StepContentMap.vue'),
+        'step-service':  () => import('@/components/StepContentService.vue'),
+        'step-done': () => import('@/components/StepDone.vue'),
+        'form-question-user': () => import('@/components/dialog/FormQuestionUser.vue')
     },
     data()
     {
         return{
-            
-        }
-    },
-    computed:{
-        step(){
-            return this.$store.state.step
+           
         }
     },
     methods:{

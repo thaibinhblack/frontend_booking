@@ -31,13 +31,13 @@ export default {
     data()
     {
         return{
-            
+            step: 1
         }
     },
     computed:{
-        step(){
-            return this.$store.state.step
-        }
+        // step(){
+        //     return this.$store.state.step
+        // }
     },
     methods:{
         
