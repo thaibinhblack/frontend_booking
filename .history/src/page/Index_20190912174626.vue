@@ -75,7 +75,7 @@ export default {
         {
             this.booking.UUID_BOOKING = uuid.v4()
             console.log(this.booking)
-            this.axios.post(this.$store.state.API_URL + 'booking',this.booking,{
+            this.$http.post(this.$store.state.API_URL + 'booking',this.booking,{
                 headers: {
                     'Content-Type': 'application/json'
                 }

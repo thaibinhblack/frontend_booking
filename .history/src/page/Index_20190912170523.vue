@@ -19,7 +19,7 @@
                 ></v-text-field>
             </div>
             <div class="col-md-7 col-sm-12">
-                <button class="btn-booking" @click="ApiCreateBooking()" style="width:100%">
+                <button class="btn-booking" @click="createBooking()" style="width:100%">
                     <h4>ĐẶT LỊCH GIỮ CHỖ NGAY! </h4>
                     <small>Hoặc liên hệ ngay: 0947164024</small>
                 </button>
@@ -75,15 +75,15 @@ export default {
         {
             this.booking.UUID_BOOKING = uuid.v4()
             console.log(this.booking)
-            this.axios.post(this.$store.state.API_URL + 'booking',this.booking,{
+            this.$http.post(this.$store.state.API_URL + 'booking',this.booking,{
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'key=AAAAtPzwO40:APA91bHYdG1E8UZNkGa8POHV83fUyehvqZ3IyG1NQDN_2Dr4v7ULve95OWBRuEznJb0SKRHak3InZWNu255M_7TucyEWHdXtG_FBKgLA9YLc0BwsA9ABzGKyKWSiAb079DZqqXEE9ltB'
                 }
             })
             .then((response) => {
                 this.$router.push('/booking')
-            }).catch((error) => {
-                console.log(error)
+            }).catch(() => {
                 this.message.type = 'error'
                 this.message.text = 'Lôi! xin vui lòng thử lại!'
             })
