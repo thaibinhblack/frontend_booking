@@ -7,11 +7,11 @@
   >
     <v-toolbar extended extension-height="-3">
 
-      <v-toolbar-title @click="$router.push('/')">Boooking</v-toolbar-title>
+      <v-toolbar-title><router-link to="/">Booking</router-link></v-toolbar-title>
 
       <div class="flex-grow-1"></div>
 
-      <v-btn icon @click="$router.push('/login')">
+      <v-btn icon>
         <v-icon>mdi-login</v-icon>
       </v-btn>
 

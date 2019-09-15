@@ -1,10 +1,7 @@
 <template>
     <div id="wrap-main">
         <v-row>
-            <v-col cols="12" sm="12" style="padding:0 15px;">
-                <header-top />
-            </v-col>
-            
+            <header-top />
              <v-card class="form-login">
                 <v-form @submit.prevent="ApiLogin()"> 
                     <v-alert :type="message.type" v-if="message.text != null" :value="true">

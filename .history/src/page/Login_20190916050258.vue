@@ -1,7 +1,7 @@
 <template>
     <div id="wrap-main">
         <v-row>
-            <v-col cols="12" sm="12" style="padding:0 15px;">
+            <v-col cols="12" sm="12" style="padding:0;">
                 <header-top />
             </v-col>
             
