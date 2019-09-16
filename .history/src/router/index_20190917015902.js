@@ -30,8 +30,7 @@ const routes = [
             {path: 'add-store',  component: () => import('@/page/manager/store/addStore.vue')},
             {path: 'services', component: () => import('@/page/manager/service/services.vue') },
             {path: 'stylists', component: () => import('@/page/manager/stylist/stylists.vue')},
-            {path: 'historys', component: () => import('@/page/manager/history/historys.vue') },
-            {path: 'questions', component: () => import('@/page/manager/question/questions.vue') }
+            {path: 'historys', component: () => import('@/page/manager/history/historys.vue') }
         ]
     },
     {

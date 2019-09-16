@@ -125,7 +125,7 @@
                     Quản lý stylist
             </v-list-item-title>
         </v-list-item>
-        <v-list-item link to="/manager/historys">
+        <v-list-item link to="/manager/history">
             <v-list-item-icon><v-icon>mdi-history</v-icon></v-list-item-icon>
             <v-list-item-title>
                     Quản lý lịch sử
