@@ -134,8 +134,8 @@ export default {
                 this.InfoService()
                 this.ApiInfoStore(response.data.UUID_ROOM)
                 const sms  =new FormData()
-                sms.append("phone",parseInt(this.$route.params.phone))
-                sms.append("message","cam on quy khach da dat lich "+infoBooking.TIME_BOOK +", "+infoBooking.DATE_BOOK + " tại chi nhánh "+infoStore.NAME_STORE)
+                sms.append("PHONE",parseInt(this.$route.params.phone))
+                sms.append("CONTET","cam on quy khach da dat lich "+infoBooking.TIME_BOOK +", "+infoBooking.DATE_BOOK + " tại chi nhánh "+infoStore.NAME_STORE)
                 this.ApiSMS(sms)
             })
         },
@@ -177,7 +177,7 @@ export default {
         },
         ApiSMS(sms)
         {
-            this.$http.post(this.$store.state.API_URL + 'sms',sms)
+            this.$http.post(this.$store.state.API_URL + 'sms',data)
         },
         ApiSendMail()
         {
@@ -189,7 +189,7 @@ export default {
             data.append("CREATED_AT",this.infoBooking.CREATED_AT)
              this.$http.get(this.$store.state.API_URL + 'user?UUID_COUNTRY='+this.infoStore.UUID_COUNTRY).then((response) => {
                     // email.EMAIL_SEND = response.data.EMAIL
-                    data.append("EMAIL_SEND",response.data.EMAIL)
+                    data.append("EMAIL_SEND",response.data)
                     this.$http.post(this.$store.state.API_URL + 'email',data)
                     // this.$http.post(this.$store.state.API_URL + 'email',email)
                 })

@@ -100,26 +100,6 @@
                 ></v-text-field>
             </v-col>
         </v-row>
-        <v-row v-if="booking.UUID_STYLIST != null">
-            <v-col cols="12" sm="12">
-                <h4>STYIST ĐƯỢC CHỌN</h4>
-            </v-col>
-            <v-col cols="12" sm="12">
-                <v-list-item two-line>
-                    <v-list-item-avatar>
-                        <v-avatar
-                            size="80px"
-                            color="#e2e2e2"
-                        >
-                            <img :src="$store.state.PUBLIC_URL + stylist.URL_STYLIST" alt="alt">
-                        </v-avatar>
-                    </v-list-item-avatar>
-                    <v-list-item-title style="margin-left: 15px;">
-                        {{stylist.NAME_STYLIST}}
-                    </v-list-item-title>
-                </v-list-item>
-            </v-col>
-        </v-row>
         <v-row>
             <v-col cols="12" sm="12">
                 <h4>THÔNG TIN KHẢO SÁT</h4>
@@ -195,7 +175,6 @@ export default {
                 type_check: null,
                 text_check: null
             },
-            stylist: {}
         }
     },
     methods:
@@ -205,12 +184,6 @@ export default {
             this.$http.get(this.$store.state.API_URL + 'booking/'+this.$route.params.uuid+'?type=uuid')
             .then((response) => {
                 this.booking = response.data
-                if(response.data.UUID_STYLIST != null)
-                {
-                    this.$http.get(this.$store.state.API_URL + 'stylist/'+response.data.UUID_STYLIST).then((response) => {
-                        this.stylist = response.data
-                    })
-                }
                 this.ApiGetStore()
             })
         },

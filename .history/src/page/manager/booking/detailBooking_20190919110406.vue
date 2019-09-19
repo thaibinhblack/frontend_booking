@@ -100,7 +100,7 @@
                 ></v-text-field>
             </v-col>
         </v-row>
-        <v-row v-if="booking.UUID_STYLIST != null">
+        <v-row>
             <v-col cols="12" sm="12">
                 <h4>STYIST ĐƯỢC CHỌN</h4>
             </v-col>

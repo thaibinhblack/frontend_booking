@@ -129,7 +129,7 @@ export default {
     {
         ApiGetInfoBookingAfter()
         {
-            this.$http.get(this.$store.state.API_URL + 'booking?getdata='+this.$route.params.phone).then((response) => {
+            this.$http.get(this.$store.API_URL + 'booking?getdata='+this.$route.params.phone).then((response) => {
                 console.log(response.data)
                 this.booking.NAME_BOOKING = response.data.NAME_BOOKING
                 this.booking.EMAIL_BOOKING = response.data.EMAIL_BOOKING
@@ -152,7 +152,6 @@ export default {
                     this.rooms = response.data
                     this.booking.UUID_ROOM = response.data[0].UUID_ROOM
                     // console.log(response.data)
-                    this.ApiGetInfoBookingAfter()
                 })
             })
         },
@@ -216,6 +215,10 @@ export default {
             
         }
     },
+    created()
+    {
+        this.ApiGetInfoBookingAfter()
+    }
 }
 </script>
 

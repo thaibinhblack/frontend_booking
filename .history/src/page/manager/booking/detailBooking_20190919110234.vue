@@ -100,7 +100,7 @@
                 ></v-text-field>
             </v-col>
         </v-row>
-        <v-row v-if="booking.UUID_STYLIST != null">
+        <v-row>
             <v-col cols="12" sm="12">
                 <h4>STYIST ĐƯỢC CHỌN</h4>
             </v-col>
@@ -114,7 +114,7 @@
                             <img :src="$store.state.PUBLIC_URL + stylist.URL_STYLIST" alt="alt">
                         </v-avatar>
                     </v-list-item-avatar>
-                    <v-list-item-title style="margin-left: 15px;">
+                    <v-list-item-title>
                         {{stylist.NAME_STYLIST}}
                     </v-list-item-title>
                 </v-list-item>

@@ -106,7 +106,7 @@
             <v-list-item link class="item-sub" to="/manager/codes">
                 <v-list-item-title>
                   
-                        Danh sách code
+                        Danh code
                 
                 </v-list-item-title>
                 

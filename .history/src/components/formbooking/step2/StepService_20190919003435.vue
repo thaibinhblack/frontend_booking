@@ -152,7 +152,6 @@ export default {
                     this.rooms = response.data
                     this.booking.UUID_ROOM = response.data[0].UUID_ROOM
                     // console.log(response.data)
-                    this.ApiGetInfoBookingAfter()
                 })
             })
         },
@@ -216,6 +215,10 @@ export default {
             
         }
     },
+    created()
+    {
+        this.ApiGetInfoBookingAfter()
+    }
 }
 </script>
 

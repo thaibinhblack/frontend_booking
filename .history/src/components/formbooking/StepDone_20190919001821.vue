@@ -134,8 +134,8 @@ export default {
                 this.InfoService()
                 this.ApiInfoStore(response.data.UUID_ROOM)
                 const sms  =new FormData()
-                sms.append("phone",parseInt(this.$route.params.phone))
-                sms.append("message","cam on quy khach da dat lich "+infoBooking.TIME_BOOK +", "+infoBooking.DATE_BOOK + " tại chi nhánh "+infoStore.NAME_STORE)
+                sms.append("PHONE",parseInt(this.$route.params.phone))
+                sms.append("CONTET","cam on quy khach da dat lich "+infoBooking.TIME_BOOK +", "+infoBooking.DATE_BOOK + " tại chi nhánh "+infoStore.NAME_STORE)
                 this.ApiSMS(sms)
             })
         },
