@@ -60,7 +60,6 @@ export default {
             checkCountry: null,
             stores: [],
             stores_tmp: [],
-            store_tmp_provice: [],
             index: null,
             message: {
                 type: null,
@@ -93,20 +92,13 @@ export default {
         {   
            this.stores = this.stores_tmp
            console.log(this.stores)
-           this.store_tmp_provice = this.stores = this.stores.filter((value,index,array) => {
+           this.stores.filter((value,index,array) => {
                return array[index].UUID_PROVINCE == this.checkProvince
            })
            this.$http.get(this.$store.state.API_URL + 'country/'+this.checkProvince+'?type=UUID_PROVINCE')
            .then((response) => {
                this.country = response.data
            })
-        },
-        choseCountry()
-        {
-            this.stores = this.store_tmp_provice
-            this.stores = this.stores.filter((value,index,array) => {
-                return array[index].UUID_COUNTRY == this.checkCountry
-            })
         },
         GetInfoBooking()
         {   
