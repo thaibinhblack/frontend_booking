@@ -32,15 +32,6 @@
                                 ></v-text-field>
                             </v-col>
                             <item-answer v-for="(answer,i) in answers" :key="i" :answer="answer" />
-                            <v-col cols="12" sm="12">
-                                <v-text-field
-                                    name="NAME_ANSWER"
-                                    label="Câu trả lời"
-                                    v-model="answer.NAME_ANWSER"
-                                    append-icon="mdi-check"
-                                    @click:append="addAnswer()"
-                                ></v-text-field>
-                            </v-col>
                         </v-row>
                     </v-container>
                </v-card-text>
@@ -66,13 +57,7 @@ export default {
                 type: null,
                 text: null
             },
-            answers: [],
-            answer: {
-                success: false,
-                error: false,
-                message_success: "",
-                message_error: ""
-            }
+            answers: []
         }
     },
     watch:{
@@ -100,24 +85,6 @@ export default {
             }).catch(() => {
                 this.message.type = 'error'
                 this.message.text = 'Lôi! Xin vui lòng thử lại!'
-            })
-        },
-        addAnswer()
-        {
-            const data = new FormData()
-            data.append("UUID_QUESTION",this.question.UUID_QUESTION)
-            data.append("NAME_ANWSER",this.answer.NAME_ANWSER)
-            this.$http.post(this.$store.state.API_URL + "answer?api_token="+this.$session.get('token'),data).then((response) => {
-                this.answer.success = true
-                this.answer.message_success = "Thêm câu trả lời mới thành công!"
-                this.answer.NAME_ANWSER = ""
-                this.answer.error = false
-                this.answer.message_error = ""
-            }).catch(() => {
-                this.answer.success = false
-                this.answer.message_success = ""
-                this.answer.error = true
-                this.answer.message_error = "Lôi! xin vui lòng thử lại!"
             })
         }
     },

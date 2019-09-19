@@ -97,7 +97,7 @@ export default {
                 const data = new FormData()
                 data.append("UUID_PROVINCE", uuid.v4())
                 data.append("NAME_PROVICE", this.name_province)
-                this.$http.post(this.$store.state.API_URL + "province?api_token="+this.$sessio.get('token'), data).then((response) => {
+                this.$http.post(this.$store.state.API_URL + "province", data).then((response) => {
                     this.name_province = null
                     this.message.type = 'success'
                     this.message.text = 'Thêm thành phố mới thành công!'

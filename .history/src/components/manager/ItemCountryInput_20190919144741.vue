@@ -32,7 +32,7 @@ export default {
             data.append("NAME_COUNTRY", item.NAME_COUNTRY)
             this.$http.post(this.$store.state.API_URL + "country/" +item.UUID_COUNTRY+"/update?api_token="+this.$session.get("token"),data).then(() => {
                 this.success = true
-                this.message_success = "Cập nhật thành công!"
+                this.message_success = "Thêm thành công!"
                 this.error = false
                 this.message_error = ""
             }).catch((error) => {

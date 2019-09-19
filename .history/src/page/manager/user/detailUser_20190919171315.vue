@@ -14,10 +14,9 @@
                             color="#e2e2e2"
                             class="avatar"
                         >
-                        <input class="input-add-avatar" type="file" ref="MyAvatar" @change="renderAvatar()" required>
-                            
+                        <!-- <input class="input-add-avatar" type="file" ref="MyAvatar" @change="renderAvatar()" required> -->
+                            <img v-if="user.AVATAR != null && avatar == null" :src="PUBLIC_URL + user.AVATAR" alt="AVATAR" />
                             <img v-if="avatar != null"  :src="avatar" alt="AVATAR" />
-                            <img v-else :src="$store.state.PUBLIC_URL + user.AVATAR" alt="AVATAR" />
                         </v-avatar>
                 </v-col>
                  <v-col cols="12" sm="6" md="4">
@@ -134,7 +133,7 @@
             <v-row>
                 <v-col cols="12" sm="6" md="4">
                    <!-- <v-btn color="primary" class="btn-add btn"> <v-icon>mdi-update</v-icon> Cập nhật</v-btn> -->
-                    <v-btn @click="deleteUser()" color="warning" style="margin-left: 15px;" class="btn-add btn"><v-icon>mdi-delete</v-icon> Xóa</v-btn>
+                    <v-btn @click="deleteUser(user.EMAIL)" color="warning" style="margin-left: 15px;" class="btn-add btn"><v-icon>mdi-delete</v-icon> Xóa</v-btn>
                     
                 </v-col>
             </v-row>
@@ -328,9 +327,9 @@ export default {
                 this.country = response.data
             })
         },
-        deleteUser()
+        deleteUser(email)
         {
-            this.$http.post(this.$store.state.API_URL + 'user/'+this.$route.params.uuid+'/delete?api_token='+this.$session.get('token')).then(() => {
+            this.$http.delete(this.$store.state.API_URL + 'user/'+this.$route.params.uuid+'?api_token='+this.$session.get('token')+'&email='+email).then(() => {
                 this.$router.push('/manager/users')
             })
         },

@@ -33,13 +33,6 @@ export default {
         {
             this.$router.push('/login')
         }
-        else
-        {
-            if(this.$session.get('token') == '')
-            {
-                this.$router.push('/login')
-            }
-        }
     }
 
 }

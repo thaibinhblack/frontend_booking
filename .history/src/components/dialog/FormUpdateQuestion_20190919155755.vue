@@ -38,7 +38,7 @@
                                     label="Câu trả lời"
                                     v-model="answer.NAME_ANWSER"
                                     append-icon="mdi-check"
-                                    @click:append="addAnswer()"
+                                    @click="addAnswer()"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
@@ -67,12 +67,7 @@ export default {
                 text: null
             },
             answers: [],
-            answer: {
-                success: false,
-                error: false,
-                message_success: "",
-                message_error: ""
-            }
+            answer: {}
         }
     },
     watch:{
@@ -107,7 +102,7 @@ export default {
             const data = new FormData()
             data.append("UUID_QUESTION",this.question.UUID_QUESTION)
             data.append("NAME_ANWSER",this.answer.NAME_ANWSER)
-            this.$http.post(this.$store.state.API_URL + "answer?api_token="+this.$session.get('token'),data).then((response) => {
+            this.$http.post(this.$store.state.API_URL + "answer").then((response) => {
                 this.answer.success = true
                 this.answer.message_success = "Thêm câu trả lời mới thành công!"
                 this.answer.NAME_ANWSER = ""

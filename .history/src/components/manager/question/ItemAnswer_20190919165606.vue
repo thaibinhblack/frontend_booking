@@ -32,7 +32,7 @@ export default {
     methods: {
         updateAnswer(UUID_ANSWER)
         {
-            // console.log(this.answer)
+            console.log(this.answer)
             const data = new FormData()
             data.append("NAME_ANWSER",this.answer.NAME_ANWSER)
             this.$http.post(this.$store.state.API_URL + 'answer/'+UUID_ANSWER+'/update?api_token='+this.$session.get("token"),data).then(() => {
@@ -49,7 +49,7 @@ export default {
         },
         deleteAnswer(UUID_ANSWER)
         {
-            this.$http.get(this.$store.state.API_URL + "answer/"+UUID_ANSWER+"/delete?api_token="+this.$session.get('token')).then(() => {
+            this.$http.post(this.$store.state.API_URL + "answer/"+UUID_ANSWER+"/delete?api_token="+this.$session.get('token')).then(() => {
                 this.success = true
                 this.errror = false
                 this.message_success = 'Xóa thành công'

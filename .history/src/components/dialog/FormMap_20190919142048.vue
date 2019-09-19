@@ -8,6 +8,7 @@ F<template>
                 <v-card-text>
                 <v-container>
                     <v-row>
+                        <message-alert />
                         <v-col cols="12">
                             <v-alert :type="message.type" v-if="message.text != null" :value="true">
                                 {{message.text}}
@@ -94,17 +95,15 @@ export default {
             }
             else
             {
-                const data = new FormData()
-                data.append("UUID_PROVINCE", uuid.v4())
-                data.append("NAME_PROVICE", this.name_province)
-                this.$http.post(this.$store.state.API_URL + "province?api_token="+this.$sessio.get('token'), data).then((response) => {
+                this.$http.post(this.$store.state.API_URL + "province", {
+                    UUID_PROVINCE: uuid.v4(),
+                    NAME_PROVICE: this.name_province
+                }).then((response) => {
                     this.name_province = null
-                    this.message.type = 'success'
-                    this.message.text = 'Thêm thành phố mới thành công!'
+                    this.commitMessage({type: 'success', text: 'Thêm TỈNH / THÀNH PHỐ mới thành công!'})
                     this.readProvicetoDB()
                 }).catch((error) => {
-                    this.message.type = 'error'
-                    this.message.text = 'Lôi! xin vui lòng thử lại!'
+                    this.commitMessage({type: 'error', text: 'Lỗi! Xin vui lòng thử lại!'})
                 })
             }
            
@@ -123,20 +122,24 @@ export default {
         },
         addCountrytoDB()
         {
-            const data = new FormData()
-            data.append("UUID_COUNTRY",  uuid.v4())
-            data.append("UUID_PROVINCE", this.selectProvince)
-            data.append("NAME_COUNTRY",this.NAME_COUNTRY )
-            this.$http.post(this.$store.state.API_URL + "country?api_token="+this.$session.get('token'),data).then((response) => {
+            this.$http.post(this.$store.state.API_URL + "country/",{
+                UUID_COUNTRY: uuid.v4(),
+                UUID_PROVINCE: this.selectProvince,
+                NAME_COUNTRY: this.NAME_COUNTRY
+            }).then((response) => {
                 this.NAME_COUNTRY = null
-                this.message.type = 'success'
-                this.message.text = 'Thêm Quận / Huyện mới thành công!'
+                this.commitMessage({type: 'success', text: 'Thêm QUẬN / HUYỆN mới thành công!'})
                 this.FilterCountry()
-            }).catch(() => {
-               this.message.type = 'error'
-               this.message.text = 'Lỗi! Xin vui lòng thử lại!'
+            }).catch((error) => {
+                this.commitMessage({type: 'error', text: 'Lỗi! Xin vui lòng thử lại!'})
             })
         },
+        updateCountry(item){
+            console.log(item)
+            // this.$http.put(this.$store.state.API_URL + "country/"+item.UUID_COUNTRY,{
+
+            // })
+        }
     },
     created()
     {

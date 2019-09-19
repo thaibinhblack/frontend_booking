@@ -12,8 +12,8 @@
                 ></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" style="line-height:70px;">
-                <button @click="updateAnswer(answer.UUID_ANWSER)"><v-icon>mdi-update</v-icon></button>
-                <button @click="deleteAnswer(answer.UUID_ANWSER)" style="margin-left:5px;"><v-icon>mdi-delete</v-icon></button>
+                <button @click="updateAnswer(answer.UUID_ANSWER)"><v-icon>mdi-update</v-icon></button>
+                <button @click="deleteAnswer(answer.UUID_ANSWER)" style="margin-left:5px;"><v-icon>mdi-delete</v-icon></button>
             </v-col>
         </v-row>
 </template>
@@ -32,7 +32,6 @@ export default {
     methods: {
         updateAnswer(UUID_ANSWER)
         {
-            // console.log(this.answer)
             const data = new FormData()
             data.append("NAME_ANWSER",this.answer.NAME_ANWSER)
             this.$http.post(this.$store.state.API_URL + 'answer/'+UUID_ANSWER+'/update?api_token='+this.$session.get("token"),data).then(() => {
@@ -49,7 +48,7 @@ export default {
         },
         deleteAnswer(UUID_ANSWER)
         {
-            this.$http.get(this.$store.state.API_URL + "answer/"+UUID_ANSWER+"/delete?api_token="+this.$session.get('token')).then(() => {
+            this.$http.post(this.$store.state.API_URL + "answer/"+UUID_ANSWER+"/delete?api_token="+this.$session.get('token')).then(() => {
                 this.success = true
                 this.errror = false
                 this.message_success = 'Xóa thành công'
@@ -58,7 +57,7 @@ export default {
                  this.success = false
                 this.errror = true
                 this.message_success = ''
-                this.message_error = 'Xóa thất bại!'
+                this.message_error = 'Cập nhật thất bại!'
             })
         }
     },

@@ -87,12 +87,15 @@ export default {
 
             const data = new FormData()
             data.append("UUID_QUESTION",this.answer.UUID_QUESTION)
+            data.append("UUID_ANWSER", this.answer.UUID_ANWSER)
             data.append("NAME_ANWSER", this.answer.NAME_ANWSER)
             this.$http.post(this.$store.state.API_URL+"answer?api_token="+this.$session.get('token'),data)
             .then(async (response) => {
                 this.message.type = 'success'
                 this.message.text = 'Bạn vừa thêm một câu trả lời mới!'
                 await this.answers.push(response.data)
+             
+                this.answer.UUID_ANWSER = await uuid.v4()
                 this.answer.NAME_ANWSER = await ''
 
             }).catch((error) => {

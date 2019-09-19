@@ -67,12 +67,7 @@ export default {
                 text: null
             },
             answers: [],
-            answer: {
-                success: false,
-                error: false,
-                message_success: "",
-                message_error: ""
-            }
+            answer: {}
         }
     },
     watch:{

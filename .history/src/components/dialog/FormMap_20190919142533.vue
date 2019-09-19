@@ -8,6 +8,7 @@ F<template>
                 <v-card-text>
                 <v-container>
                     <v-row>
+                        <message-alert />
                         <v-col cols="12">
                             <v-alert :type="message.type" v-if="message.text != null" :value="true">
                                 {{message.text}}
@@ -97,7 +98,7 @@ export default {
                 const data = new FormData()
                 data.append("UUID_PROVINCE", uuid.v4())
                 data.append("NAME_PROVICE", this.name_province)
-                this.$http.post(this.$store.state.API_URL + "province?api_token="+this.$sessio.get('token'), data).then((response) => {
+                this.$http.post(this.$store.state.API_URL + "province", data).then((response) => {
                     this.name_province = null
                     this.message.type = 'success'
                     this.message.text = 'Thêm thành phố mới thành công!'
@@ -127,7 +128,7 @@ export default {
             data.append("UUID_COUNTRY",  uuid.v4())
             data.append("UUID_PROVINCE", this.selectProvince)
             data.append("NAME_COUNTRY",this.NAME_COUNTRY )
-            this.$http.post(this.$store.state.API_URL + "country?api_token="+this.$session.get('token'),data).then((response) => {
+            this.$http.post(this.$store.state.API_URL + "country/",data).then((response) => {
                 this.NAME_COUNTRY = null
                 this.message.type = 'success'
                 this.message.text = 'Thêm Quận / Huyện mới thành công!'
@@ -137,6 +138,12 @@ export default {
                this.message.text = 'Lỗi! Xin vui lòng thử lại!'
             })
         },
+        updateCountry(item){
+            console.log(item)
+            // this.$http.put(this.$store.state.API_URL + "country/"+item.UUID_COUNTRY,{
+
+            // })
+        }
     },
     created()
     {

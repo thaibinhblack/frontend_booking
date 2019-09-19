@@ -49,7 +49,7 @@ export default {
         },
         deleteAnswer(UUID_ANSWER)
         {
-            this.$http.get(this.$store.state.API_URL + "answer/"+UUID_ANSWER+"/delete?api_token="+this.$session.get('token')).then(() => {
+            this.$http.post(this.$store.state.API_URL + "answer/"+UUID_ANSWER+"/delete?api_token="+this.$session.get('token')).then(() => {
                 this.success = true
                 this.errror = false
                 this.message_success = 'Xóa thành công'
